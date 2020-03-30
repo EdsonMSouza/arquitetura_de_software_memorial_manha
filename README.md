@@ -14,7 +14,7 @@
 * [Instalação do XAMPP](https://www.apachefriends.org/pt_br/index.html) - Apache + MySQL
 * [Compilador Java Online](https://www.onlinegdb.com/) - Desenvolvimento de códigos Java Online (Não substitui o Netbeans)
 * [Framework Bootstrap](https://getbootstrap.com/) - *Framework* para desenvolvimento do *Front-End*
-* [Compartilhar Print de Tela Online](https://prnt.sc/)
+* [LightShot](https://prnt.sc/) - Compartilhar **Print** de Tela Online
 
 ## Professor
 Edson Melo de Souza, Me. - ([prof.edson.melo@gmail.com](mailto:prof.edson.melo@gmail.com)) - ([Currículo *Lattes*](http://lattes.cnpq.br/2641658716558510))
