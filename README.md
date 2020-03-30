@@ -1,4 +1,4 @@
-## Informações da Disciplina
+## Informações
 * **Disciplina:** Arquitetura de Software
 * **Campus:** Memorial
 * **Período:** Manhã
