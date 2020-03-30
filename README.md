@@ -1,9 +1,15 @@
-## Material de apoio para o período emergencial devido ao **COVID-19**
+## Disciplina
+Arquitetura de Software
+
+### Campus
+Memorial
+
+### Período
+Manhã
+
+## Descrição
 * Este material é uma iniciativa independente para auxiliar os alunos, visando facilitar o acesso e o acompanhamento das atividades ministradas via **Google Meet**. Portanto, **não se caracteriza como material oficial da instituição.**
 * Todo o desenvolvimento de códigos e/ou materiais apresentados via **Google Meet** serão disponibilizados imediatamente após o término das aulas.
-
-## Disciplina
-Arquitetura de Software | Memorial | Manhã
 
 ## Dicas Úteis
 * [Instalação do Java EE](https://www.oracle.com/java/technologies/javaee-8-sdk-downloads.html)
