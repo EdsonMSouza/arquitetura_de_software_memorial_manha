@@ -5,6 +5,12 @@
 ## Disciplina
 Arquitetura de Software | Memorial | Manhã
 
+## Dicas Úteis
+* [Instalação do Netbeans Versão 8.2](https://netbeans.org/downloads/old/8.2/) - Selecione a opção da coluna TUDO.
+* [Instalação do XAMPP](https://www.apachefriends.org/pt_br/index.html) - Apache + MySQL
+* [Compilador Java Online](https://www.onlinegdb.com/) - Desenvolvimento de códigos Java Online (Não substitui o Netbeans)
+* [Framework Bootstrap](https://getbootstrap.com/) - Framework para desenvolvimento do Front-End
+
 ## Professor
 Edson Melo de Souza, Me. - ([prof.edson.melo@gmail.com](mailto:prof.edson.melo@gmail.com)) - ([Currículo *Lattes*](http://lattes.cnpq.br/2641658716558510))
 
