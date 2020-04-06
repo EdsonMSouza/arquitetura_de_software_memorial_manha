@@ -29,19 +29,6 @@ public class AlunosController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AlunosController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Eu sou um Servlet novinho " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -56,7 +43,20 @@ public class AlunosController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        // faz o tratamento das requisições feitas por URL
+        // Ex.: Verificar se tem um session ativa, se tem um cookie ativo ou existente, etc...
+        // configura o tipo de dados que será enviado para a View
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
+        // preparando uma variável (attribute = atributo) para enviar para a view
+        // primeiro parâmetro é o nome da variável
+        // segundo parâmetro é o valor a ser enviado. Pode ser um valor
+        // numérico, texto ou objeto
+        request.setAttribute("mensagem", "Este é o método doGet do AlunosController");
+
+        // Cria o redirecionamento para a View (view_mensagem.jsp)
+        request.getRequestDispatcher("view_mensagem.jsp").forward(request, response);
     }
 
     /**
@@ -70,7 +70,14 @@ public class AlunosController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String ra = request.getParameter("ra");
+
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
+        request.setAttribute("mensagem", "Aqui é o processamento do Inserir");
+        request.getRequestDispatcher("view_mensagem.jsp").forward(request, response);
     }
 
     /**
