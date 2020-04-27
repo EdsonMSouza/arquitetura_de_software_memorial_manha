@@ -7,12 +7,8 @@ package controllers;
 
 import beans.Aluno;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -122,6 +118,43 @@ public class AlunosController extends HttpServlet {
         switch (operacao) {
             case "Inserir":
                 break;
+
+            case "Pesquisar":
+                try {
+                    // criando uma instância do objeto Model
+                    AlunosModel alunosModel = new AlunosModel();
+
+                    if (request.getParameter("tipo").equals("ra")) {
+                        aluno.setRa(Integer.parseInt(request.getParameter("valor")));
+                    } else {
+                        aluno.setNome(request.getParameter("valor"));
+                    }
+
+                    // recuperando a listagem dos alunos
+                    alunosDados = alunosModel.pesquisar(aluno);
+
+                    // verificar se houve um retorno de dados
+                    if (alunosDados.isEmpty()) {
+                        request.setAttribute(
+                                "mensagem",
+                                "RA não localizado.");
+                        request.getRequestDispatcher("view_pesquisar.jsp").
+                                forward(request, response);
+                    } else {
+                        request.setAttribute(
+                                "listaAlunos", alunosDados);
+                        request.getRequestDispatcher("view_listar.jsp").
+                                forward(request, response);
+                    }
+                } catch (SQLException ex) {
+                    // se ocorreu algum erro, envia uma mensagem
+                    request.setAttribute(
+                            "mensagem", ex);
+                    request.getRequestDispatcher("view_mensagem.jsp").
+                            forward(request, response);
+                }
+                break;
+
             case "Editar":
                 request.setAttribute(
                         "mensagem", "O RA solicitado para EDIÇÃO foi: " + ra);

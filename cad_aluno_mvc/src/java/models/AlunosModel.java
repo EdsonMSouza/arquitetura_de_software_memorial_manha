@@ -32,6 +32,42 @@ public class AlunosModel implements Serializable {
     }
 
     /**
+     *
+     * @param aluno
+     * @return
+     */
+    public List<Aluno> pesquisar(Aluno aluno) {
+        List<Aluno> alunos = new ArrayList<>();
+        PreparedStatement ps;
+        try {
+
+            if (aluno.getRa() != 0) {
+                String sql = "SELECT * FROM alunos WHERE ra = ?";
+                ps = conexao.prepareStatement(sql);
+                ps.setInt(1, aluno.getRa());
+            } else {
+                String sql = "SELECT * FROM alunos WHERE nome = ?";
+                ps = conexao.prepareStatement(sql);
+                ps.setString(1, aluno.getNome());
+            }
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                aluno = new Aluno();
+                aluno.setId(rs.getInt("id"));
+                aluno.setRa(rs.getInt("ra"));
+                aluno.setNome(rs.getString("nome"));
+                aluno.setCurso(rs.getString("curso"));
+
+                alunos.add(aluno);
+            }
+            return alunos;
+        } catch (SQLException ex) {
+            throw new RuntimeException("Falha ao listar os alunos.", ex);
+        }
+    }
+
+    /**
      * Método listar() Retorna todos os alunos cadastrados no banco de dados
      *
      * @return List (Aluno)
