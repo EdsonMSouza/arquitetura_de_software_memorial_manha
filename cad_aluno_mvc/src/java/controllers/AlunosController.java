@@ -110,13 +110,41 @@ public class AlunosController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+
         // variável para receber qual o tipo de operação enviada
         String operacao = request.getParameter("operacao");
+
         // variável para pegar o "ra" enviado
         String ra = request.getParameter("ra");
+
         // criando um sistema de seleção (Estrutura de Seleção)
         switch (operacao) {
             case "Inserir":
+                try {
+                    // atribuir os valores originados do formulário (view_cadastrar.jsp)
+                    aluno.setRa(Integer.parseInt(request.getParameter("ra")));
+                    aluno.setNome(request.getParameter("nome"));
+                    aluno.setCurso(request.getParameter("curso"));
+
+                    // cria uma instância para o Model do Aluno
+                    AlunosModel am = new AlunosModel();
+
+                    // chama o método inserir e passa o objeto "aluno"
+                    am.inserir(aluno);
+
+                    // redireciona para a página de mensagem informando o status
+                    request.setAttribute("mensagem", am.toString());
+                    request.getRequestDispatcher("view_mensagem.jsp").
+                            forward(request, response);
+
+                } catch (SQLException ex) {
+                    // se ocorreu algum erro, envia uma mensagem
+                    request.setAttribute(
+                            "mensagem", ex.getMessage());
+                    request.getRequestDispatcher("view_mensagem.jsp").
+                            forward(request, response);
+                }
+
                 break;
 
             case "Pesquisar":
@@ -156,10 +184,26 @@ public class AlunosController extends HttpServlet {
                 break;
 
             case "Editar":
-                request.setAttribute(
-                        "mensagem", "O RA solicitado para EDIÇÃO foi: " + ra);
-                request.getRequestDispatcher("view_mensagem.jsp").
-                        forward(request, response);
+                try {
+                    // criando uma instância do objeto Model
+                    AlunosModel alunosModel = new AlunosModel();
+                    aluno.setRa(Integer.parseInt(request.getParameter("ra")));
+
+                    // recuperando a listagem dos alunos
+                    alunosDados = alunosModel.pesquisar(aluno);
+
+                    request.setAttribute(
+                            "listaAlunos", alunosDados);
+                    request.getRequestDispatcher("view_editar.jsp").
+                            forward(request, response);
+
+                } catch (SQLException ex) {
+                    // se ocorreu algum erro, envia uma mensagem
+                    request.setAttribute(
+                            "mensagem", ex);
+                    request.getRequestDispatcher("view_mensagem.jsp").
+                            forward(request, response);
+                }
                 break;
             case "Excluir":
                 request.setAttribute(

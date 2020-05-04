@@ -113,4 +113,44 @@ public class AlunosModel implements Serializable {
             throw new RuntimeException("Falha ao listar os alunos.", ex);
         }
     }
+
+    /**
+     * Método para inserir um novo aluno(a)
+     *
+     * @param Aluno
+     */
+    public void inserir(Aluno aluno) {
+        try {
+            String sql
+                    = "INSERT INTO alunos (ra, nome, curso) "
+                    + "VALUES (?, ?, ?)";
+
+            // prepara a construção do SQL
+            PreparedStatement ps = conexao.prepareStatement(sql);
+
+            // atribuir os valores por meio da associação (?)
+            ps.setInt(1, aluno.getRa());
+            ps.setString(2, aluno.getNome());
+            ps.setString(3, aluno.getCurso());
+
+            // Executar o SQL para inserir no banco
+            ps.execute();
+
+            // Fecha a aconexão
+            ps.close();
+            conexao.close();
+
+            this.status
+                    = "O aluno [" + aluno.getNome()
+                    + " ]inserido com sucesso!!!";
+
+        } catch (SQLException ex) {
+            this.status
+                    = "Erro ao inserir o aluno [" + ex.getMessage() + "]";
+        }
+    }
+
+    public String toString() {
+        return status;
+    }
 }

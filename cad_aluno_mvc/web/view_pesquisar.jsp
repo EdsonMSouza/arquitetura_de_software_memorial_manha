@@ -17,7 +17,6 @@
                 <option value ="nome">Nome</option>
             </select>
         </div>
-
         <div class="form-group col-md-1 mb-2">
             <input type="hidden" name="operacao" value="Pesquisar">
 
