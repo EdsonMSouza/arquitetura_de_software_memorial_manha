@@ -205,11 +205,49 @@ public class AlunosController extends HttpServlet {
                             forward(request, response);
                 }
                 break;
+
+            case "Atualizar":
+                try {
+                    // recuperar os dados enviados pelo formulário
+                    aluno.setRa(Integer.parseInt(request.getParameter("ra")));
+                    aluno.setNome(request.getParameter("nome"));
+                    aluno.setCurso(request.getParameter("curso"));
+
+                    AlunosModel am = new AlunosModel();
+                    am.atualizar(aluno);
+
+                    request.setAttribute(
+                            "mensagem", am.toString());
+                    request.getRequestDispatcher("view_mensagem.jsp").
+                            forward(request, response);
+
+                } catch (SQLException ex) {
+                    request.setAttribute(
+                            "mensagem", ex.getMessage());
+                    request.getRequestDispatcher("view_mensagem.jsp").
+                            forward(request, response);
+                }
+
+                break;
+
             case "Excluir":
-                request.setAttribute(
-                        "mensagem", "O RA solicitado para EXCLUSÃO foi: " + ra);
-                request.getRequestDispatcher("view_mensagem.jsp").
-                        forward(request, response);
+                try {
+                    aluno.setRa(Integer.parseInt(request.getParameter("ra")));
+                    AlunosModel am = new AlunosModel();
+                    am.excluir(aluno);
+
+                    request.setAttribute(
+                            "mensagem", am.toString());
+                    request.getRequestDispatcher("view_mensagem.jsp").
+                            forward(request, response);
+
+                } catch (SQLException ex) {
+                    request.setAttribute(
+                            "mensagem", ex.getMessage());
+                    request.getRequestDispatcher("view_mensagem.jsp").
+                            forward(request, response);
+                }
+
                 break;
         }
     }
