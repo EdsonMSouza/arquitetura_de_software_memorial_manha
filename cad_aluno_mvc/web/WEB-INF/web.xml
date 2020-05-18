@@ -4,9 +4,17 @@
         <servlet-name>AlunosController</servlet-name>
         <servlet-class>controllers.AlunosController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListagemAlunos</servlet-name>
+        <servlet-class>controllers.ListagemAlunos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AlunosController</servlet-name>
         <url-pattern>/AlunosController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListagemAlunos</servlet-name>
+        <url-pattern>/ListagemAlunos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
